@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+</head>
+<body>
+
+
+<form id="form">
+    name1 <input   id="field1" name="name1" type="text" />{% csrf_token %}
+    <button class="add" > Добавить </button>
+</form>
+	<a href="result">Результат</a>
+
+<script >
+    $(document).ready(function() {
+        var next = 1;
+        $(".add").click(function() {
+		    $.ajax({
+			    type: "POST",
+			    url: "",
+			    data: $('#form').serialize()
+		    }).done(function() {
+
+		var addto = "#field" + next;
+        next = next + 1;
+        var newIn = '<br /><br />name'+next+'<input  id="field' + next + '"name="name' + next + '" type="text" >';
+        var newInput = $(newIn);
+        $(addto).after(newInput);
+
+                    });
+		        return false;
+        });
+    });
+
+</script>
+</body>
+</html>
